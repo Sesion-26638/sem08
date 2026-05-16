@@ -1,0 +1,59 @@
+Ejercicoi1
+
+sumaPrimerosTres :: [Int] -> Int
+sumaPrimerosTres (a : b : c : _) = a + b + c
+sumaPrimerosTres _                 = 0
+
+leerLista :: String -> [Int]
+leerLista input
+  | '[' `elem` input = read input
+  | otherwise        = map read (words input)
+
+main :: IO ()
+main = do
+  putStrLn "Ingrese enteros separados por espacios (ej: 5 2 1 6 4) o con corchetes [1,2,3]:"
+  input <- getLine
+  let lista = leerLista input
+  putStrLn $ "Lista ingresada: " ++ show lista
+  putStrLn $ "La suma de los tres primeros es: " ++ show (sumaPrimerosTres lista)
+
+
+
+
+
+
+
+Ejercicio 2
+
+mayoresDeEdad :: [Int] -> [Int]
+mayoresDeEdad edades = filter (>= 18) edades
+
+leerLista :: String -> [Int]
+leerLista input
+  | '[' `elem` input = read input
+  | otherwise        = map read (words input)
+
+main :: IO ()
+main = do
+  putStrLn "Ingrese edades separadas por espacios (ej: 12 18 25 17 30) o [12,18,25,17,30]:"
+  input <- getLine
+  let edades = leerLista input
+  putStrLn $ "Edades ingresadas: " ++ show edades
+  putStrLn $ "Mayores o iguales a 18: " ++ show (mayoresDeEdad edades)
+
+
+
+Ejercicio3
+-- Ejercicio 3: longitud de una lista sin usar la función nativa length.
+
+miLongitud :: [a] -> Int
+miLongitud []     = 0
+miLongitud (_:xs) = 1 + miLongitud xs
+
+main :: IO ()
+main = do
+  putStrLn "Ingrese numeros separados por espacios (ej: 10 20 30 40):"
+  input <- getLine
+  let lista = map read (words input) :: [Int]
+  putStrLn $ "Lista ingresada: " ++ show lista
+  putStrLn $ "Longitud: " ++ show (miLongitud lista)
